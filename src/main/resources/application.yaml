@@ -1,0 +1,29 @@
+server:
+  port: 8099
+spring:
+  config:
+    additional-location: classpath:config/custom.yml
+  profiles:
+    include:
+      - dev
+  datasource:
+    url: jdbc:postgresql://localhost:9001/sykros_stores
+    username: sykros
+    password: fqQ3nN4L
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        id:
+          new_generator_mappings: true
+        current_session_context_class: thread
+        show_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  servlet:
+    multipart:
+      enabled: true
+
+
+
