@@ -8,7 +8,6 @@ import org.springframework.context.annotation.*;
 import javax.sql.DataSource;
 @Configuration
 public class datasource {
-
     @Value("${spring.datasource.url}")
     private String url;
 
@@ -25,5 +24,4 @@ public class datasource {
         dataSource.setPassword(password);
         return dataSource;
     }
-
 }
