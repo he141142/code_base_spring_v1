@@ -1,12 +1,17 @@
 package com.sykros.codebase.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "books")
+@Getter
+@Setter
 @NoArgsConstructor
 public class Book {
     @Id
@@ -15,22 +20,24 @@ public class Book {
 
     @NotEmpty
     @NotNull
+    @JsonProperty("description")
     private String description;
 
     @NotEmpty
     @NotNull
+    @JsonProperty("book_name")
     @Column(name = "book_name")
     private String bookName;
 
-    @NotEmpty
     @NotNull
+    @JsonProperty("pages")
     @Column(name = "pages")
     private int pages;
 
     public Book(Builder builder){
-            this.bookName = builder.bookName;
-            this.pages = builder.pages;
-            this.description = builder.description;
+        this.setBookName(builder.bookName);
+        this.setDescription(builder.description);
+        this.setPages(builder.pages);
     }
 
     public static class Builder{
@@ -43,8 +50,8 @@ public class Book {
             return this;
         }
 
-        public Builder bookName(String bookname){
-            this.bookName = bookname;
+        public Builder bookName(String bookName){
+            this.bookName = bookName;
             return this;
         }
 

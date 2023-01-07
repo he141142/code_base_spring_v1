@@ -11,12 +11,14 @@ public class BookService implements IBookService {
 
     BookRepository bookRepository;
 
+
     @Autowired
     public void setBookRepository(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
-    public void Create(Book book){
-        bookRepository.save(book);
-    };
+    @Override
+    public Book CreateBook(Book book) {
+        return this.bookRepository.save(book);
+    }
 }
