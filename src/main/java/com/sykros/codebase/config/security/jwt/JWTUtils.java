@@ -1,5 +1,6 @@
 package com.sykros.codebase.config.security.jwt;
 import com.sykros.codebase.config.security.service.UserDetail;
+import com.sykros.codebase.enums.message.configuration_log.JWT;
 import io.jsonwebtoken.*;
 import org.springframework.security.core.Authentication;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 public class JWTUtils {
     private static final Logger logger = LoggerFactory.getLogger(JWTUtils.class);
+
     @Value("${sykros.store.jwtSecret}")
     private String jwtSecret;
 
@@ -36,15 +38,15 @@ public class JWTUtils {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
-            logger.error("Invalid JWT signature: {}", e.getMessage());
+            logger.error(JWT.SignatureException.getExceptionLog(), e.getMessage());
         } catch (MalformedJwtException e) {
-            logger.error("Invalid JWT token: {}", e.getMessage());
+            logger.error(JWT.MalformedJwtException.getExceptionLog(), e.getMessage());
         } catch (ExpiredJwtException e) {
-            logger.error("JWT token is expired: {}", e.getMessage());
+            logger.error(JWT.ExpiredJwtException.getExceptionLog(), e.getMessage());
         } catch (UnsupportedJwtException e) {
-            logger.error("JWT token is unsupported: {}", e.getMessage());
+            logger.error(JWT.UnsupportedJwtException.getExceptionLog(), e.getMessage());
         } catch (IllegalArgumentException e) {
-            logger.error("JWT claims string is empty: {}", e.getMessage());
+            logger.error(JWT.IllegalArgumentException.getExceptionLog(), e.getMessage());
         }
 
         return false;

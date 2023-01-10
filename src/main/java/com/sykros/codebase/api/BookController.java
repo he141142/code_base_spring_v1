@@ -46,4 +46,9 @@ public class BookController {
                 buildResponseEntity();
     }
 
+
+    public void AddBookToInventory(Long bookId){
+
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.sykros.codebase.service;
 
 import com.sykros.codebase.domain.Book;
+import com.sykros.codebase.dto.response.AddBookToInventoryResponse;
 import com.sykros.codebase.repositories.BookRepository;
 import com.sykros.codebase.service.interfaces.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,10 @@ public class BookService implements IBookService {
     @Override
     public Book CreateBook(Book book) {
         return this.bookRepository.save(book);
+    }
+
+    @Override
+    public AddBookToInventoryResponse AddBookToInventory(String inventoryCode, Long bookId) {
+        return null;
     }
 }

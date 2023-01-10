@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE Roles [
+        <!ELEMENT Roles (Role)+>
+        <!ELEMENT Role (name,description)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT description (#PCDATA)>
+        <!ATTLIST Role id CDATA #REQUIRED>
+        ]>
+<Roles>
+    <Role id="1">
+        <name>ADMIN</name>
+        <description>admin control the system</description>
+    </Role>
+    <Role id="2">
+        <name>USER</name>
+        <description>Base role for authentication, basic service</description>
+    </Role>
+    <Role id="3">
+        <name>PUBLISHER</name>
+        <description>Control and manage their own books</description>
+    </Role>
+    <Role id="4">
+        <name>GUEST</name>
+        <description>...</description>
+    </Role>
+</Roles>

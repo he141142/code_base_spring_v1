@@ -34,33 +34,37 @@ public class Book {
     @Column(name = "pages")
     private int pages;
 
-    public Book(Builder builder){
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "storage_id")
+    BookInventory bookInventory = null;
+
+    public Book(Builder builder) {
         this.setBookName(builder.bookName);
         this.setDescription(builder.description);
         this.setPages(builder.pages);
     }
 
-    public static class Builder{
+    public static class Builder {
         private String description;
         private String bookName;
         private int pages;
 
-        public Builder setDescription(String description){
+        public Builder setDescription(String description) {
             this.description = description;
             return this;
         }
 
-        public Builder bookName(String bookName){
+        public Builder bookName(String bookName) {
             this.bookName = bookName;
             return this;
         }
 
-        public Builder withPages(int page){
+        public Builder withPages(int page) {
             this.pages = page;
             return this;
         }
 
-        public Book build(){
+        public Book build() {
             return new Book(this);
         }
     }
