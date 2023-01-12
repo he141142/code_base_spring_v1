@@ -66,13 +66,13 @@ public class SykrosWebSecurity {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(this.unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeHttpRequests().requestMatchers("/**").permitAll()
-                .requestMatchers("/api/test/**").permitAll()
-                .anyRequest().authenticated();
+                .authorizeHttpRequests().requestMatchers("/**").permitAll();
+//                .requestMatchers("/api/test/**").permitAll()
+//                .anyRequest().authenticated();
 
         http.authenticationProvider(authenticationProvider());
 
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+//        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

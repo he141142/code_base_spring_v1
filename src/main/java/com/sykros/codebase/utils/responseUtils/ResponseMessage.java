@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 
 @Getter
 @Setter
 public class ResponseMessage<T> {
     @Getter
     @JsonProperty("http_sattus")
-    HttpStatus statusCode = HttpStatus.NOT_FOUND;
+    HttpStatusCode statusCode = HttpStatus.NOT_FOUND;
 
 
     @JsonProperty("data")
@@ -61,8 +62,9 @@ public class ResponseMessage<T> {
             return new ResponseMessage<>(this);
         }
 
-        public SykrosResponseEntity<ResponseMessage<T>> buildResponseEntity(){
-            return new SykrosResponseEntity.Builder<T>().buildResponseEntity(this.data,this.statusCode,this.message);
+        public SykrosResponseEntity buildResponseEntity(){
+            return new SykrosResponseEntity.Builder<T>().
+                    buildResponseEntity(this);
         }
     }
 }

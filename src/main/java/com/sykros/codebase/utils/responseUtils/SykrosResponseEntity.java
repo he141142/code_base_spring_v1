@@ -1,9 +1,7 @@
 package com.sykros.codebase.utils.responseUtils;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
@@ -15,8 +13,6 @@ public class SykrosResponseEntity<T> extends ResponseEntity<T> {
     public SykrosResponseEntity(HttpStatusCode status) {
         super(status);
     }
-
-    HttpStatus statusCode;
     T data;
     String message;
 
@@ -27,8 +23,6 @@ public class SykrosResponseEntity<T> extends ResponseEntity<T> {
     public static SykrosResponseEntity<?> responseError(ErrorResponseMessage<?> errorResponseMessage) {
         return new SykrosResponseEntity<>(errorResponseMessage, errorResponseMessage.getStatusCode());
     }
-
-
 
 
     public SykrosResponseEntity(T body, HttpStatusCode status) {
@@ -54,15 +48,9 @@ public class SykrosResponseEntity<T> extends ResponseEntity<T> {
 
 
 
-        public SykrosResponseEntity<ResponseMessage<T>> buildResponseEntity(T data, HttpStatus status, String message) {
-            ResponseMessage<T> respMsg = new ResponseMessage.
-                    Builder<T>().
-                    setData(data).
-                    withMessage(message).
-                    status(status).
-                    build();
-
-            return new SykrosResponseEntity<>(respMsg, HttpStatusCode.valueOf(status.value()));
+        public SykrosResponseEntity<ResponseMessage<T>> buildResponseEntity(ResponseMessage.Builder<T> builder) {
+            ResponseMessage<T> respMsg = new ResponseMessage<>(builder);
+            return new SykrosResponseEntity<>(respMsg,respMsg.statusCode);
         }
 
         public ResponseMessage.Builder<T> withResponseComponent() {

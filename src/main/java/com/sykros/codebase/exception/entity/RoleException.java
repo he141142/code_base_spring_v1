@@ -11,10 +11,9 @@ public class RoleException extends EntityException {
 
     public static class builder extends EntityException.builder<builder>{
         String exceptionMessage;
-
         public RoleException build() {
             return new RoleException(this.exceptionMessage);
         }
-
     }
+
 }

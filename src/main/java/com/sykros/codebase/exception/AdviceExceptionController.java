@@ -27,6 +27,8 @@ public class AdviceExceptionController {
                     new ViolationEntity(violation.getPropertyPath().toString(), violation.getMessage())
             );
         }
+        System.out.println("111111111111111");
+        e.printStackTrace();
         return SykrosResponseEntity.
                 buildResponseEntity(new ResponseMessage.
                         Builder<>().

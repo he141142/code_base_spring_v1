@@ -4,4 +4,6 @@ import com.sykros.codebase.dto.object.Book;
 
 public interface EntityValidate {
     boolean IsEntityExistById(Long id);
+//    boolean IsExistByStringValue();
+
 }
